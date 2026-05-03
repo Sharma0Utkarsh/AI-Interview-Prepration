@@ -4,7 +4,17 @@ const mongoose = require("mongoose");
     (
         {
             name: {type: String, require: true},
-            email: {type: String, require: true, unique: true},
+             email: {
+        type: String,
+        required: true,
+        unique: true,
+        lowercase: true,
+        trim: true,
+        match: [
+            /^[a-zA-Z0-9._%+-]+@gmail\.com$/,
+            "Only Gmail addresses are allowed"
+        ]
+    },
             password: {type: String, require: true},
             profileImageUrl: {type: String, default: null},
         },{timestamps: true}
